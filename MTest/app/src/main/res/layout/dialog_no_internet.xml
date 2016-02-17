@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="220dp"
+    android:layout_centerInParent="true"
+    android:layout_marginEnd="20dp"
+    android:layout_marginStart="20dp"
+    android:background="@android:color/transparent">
+
+
+    <ImageView
+        android:id="@+id/ivNoInternet"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@anim/no_internet"
+        tools:ignore="ContentDescription" />
+
+
+    <TextView
+        android:id="@+id/tvNoInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivNoInternet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Oops,\n You seem to have gone out of\n network coverage. Please check your wifi\n settings or mobile data connection."
+        android:textColor="#FFF"
+        tools:ignore="UnusedAttribute" />
+
+
+</RelativeLayout>

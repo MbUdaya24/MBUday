@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:background="#F3F3F3">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv.signup.caps"
+        android:id="@+id/btnSignUp"
+        android:textSize="@dimen/tv.12"
+        android:layout_margin="@dimen/margin.10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+       android:background="@null"
+        android:onClick="onSignUpClick"
+        android:stateListAnimator="@null"/>
+
+    <ImageView
+        android:layout_width="@dimen/margin.60"
+        android:layout_height="@dimen/margin.60"
+        android:id="@+id/ivLogo"
+        android:src="@drawable/ic_logo"
+        android:layout_centerInParent="true"/>
+
+
+    <Button
+        android:layout_width="@dimen/margin.30"
+        android:layout_height="@dimen/margin.30"
+        android:id="@+id/btnSignIn"
+        android:layout_marginTop="@dimen/margin.100"
+        android:background="@drawable/ic_go"
+        android:onClick="onSignInClick"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ivLogo"/>
+</RelativeLayout>

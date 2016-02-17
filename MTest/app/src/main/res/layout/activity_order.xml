@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <RelativeLayout
+        android:layout_height="@dimen/margin.50"
+        android:id="@+id/rlHeader"
+        android:layout_marginTop="@dimen/margin.10"
+        android:layout_width="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tv.order"
+            android:id="@+id/tvHeaderProduct"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:layout_width="@dimen/margin.30"
+            android:layout_height="@dimen/margin.30"
+            android:id="@+id/btnBack"
+            android:onClick="onBackClick"
+            android:layout_marginLeft="@dimen/margin.10"
+            android:background="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+    </RelativeLayout>
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/rlHeader"
+        android:scrollbars="none">
+    <LinearLayout android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/rlHeader"
+        android:onClick="onHideKeyBoard"
+        android:weightSum="120">
+
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.20"
+            android:layout_weight="20">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.yourname"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvYourName"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/tv.fnln"
+                android:id="@+id/tvHintOne"
+                android:paddingLeft="@dimen/padding.10"
+                android:textColor="@android:color/darker_gray"
+                android:layout_alignBottom="@+id/tvYourName"
+                android:layout_toRightOf="@+id/tvYourName"
+                android:layout_toEndOf="@+id/tvYourName" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etFirstName"
+                android:text="John"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/view"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/view"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_toStartOf="@+id/view" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+              android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.2.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/view"
+                android:layout_below="@+id/etFirstName"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vFirstName" />
+
+            <View
+                android:layout_height="@dimen/margin.50"
+                android:layout_width="2dp"
+                android:layout_marginTop="@dimen/margin.5"
+                android:layout_below="@+id/tvHintOne"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/view" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etLastName"
+                android:background="@null"
+                android:text="Adams"
+                android:inputType="text"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/view"
+                android:layout_toRightOf="@+id/view"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toLeftOf="@+id/view"
+                android:layout_below="@+id/etLastName"
+                android:id="@+id/vLastName"
+                android:layout_toRightOf="@+id/vFirstName"
+                android:layout_toEndOf="@+id/vFirstName" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.cardno"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvCardNumber"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/tv.longno"
+                android:id="@+id/tvHinttwo"
+                android:paddingLeft="@dimen/padding.10"
+                android:textColor="@android:color/darker_gray"
+                android:layout_alignBottom="@+id/tvCardNumber"
+                android:layout_toRightOf="@+id/tvCardNumber"
+                android:layout_toEndOf="@+id/tvCardNumber" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etCardNumber"
+               android:layout_below="@+id/tvCardNumber"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+               android:text="4242424242424242"
+                android:padding="@dimen/padding.10"
+                android:inputType="number"
+                android:background="@null"
+                 />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etCardNumber"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vCardNumber" />
+
+
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.cvv"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvCvv"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/tv.digit"
+                android:id="@+id/tvHintthree"
+                android:paddingLeft="@dimen/padding.10"
+                android:textColor="@android:color/darker_gray"
+                android:layout_alignBottom="@+id/tvCvv"
+                android:layout_toRightOf="@+id/tvCvv"
+                android:layout_toEndOf="@+id/tvCvv" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.5"
+                android:id="@+id/etCvv"
+                android:layout_below="@+id/tvCvv"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="122"
+                android:padding="@dimen/padding.10"
+                android:inputType="number"
+                android:background="@null"
+                />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etCvv"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vCvv" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.exp"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvExDate"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/tvDate"
+                android:layout_below="@+id/tvExDate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="12154"
+                android:padding="@dimen/padding.10"
+                android:background="@null"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/margin.25"
+                android:layout_height="@dimen/margin.25"
+                android:id="@+id/ivArrow"
+                android:onClick="onDateClick"
+                android:layout_marginRight="@dimen/margin.10"
+                android:src="@drawable/ic_arrow"
+                android:layout_alignTop="@+id/tvDate"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin.10"
+                android:layout_marginTop="@dimen/margin.8" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.address.1"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvAddress1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etAddress1"
+                android:layout_below="@+id/tvAddress1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="No.21,New Street"
+                android:padding="@dimen/padding.10"
+                android:background="@null"
+                android:inputType="textPostalAddress"
+                />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etAddress1"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vtvAddress1" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tv.address.2"
+                android:paddingLeft="@dimen/padding.10"
+                android:id="@+id/tvAddress2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etAddress2"
+                android:layout_below="@+id/tvAddress2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="12154"
+                android:padding="@dimen/padding.10"
+                android:background="@null"
+                android:inputType="textPostalAddress"
+                />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etAddress2"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vtvAddress2" />
+        </RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

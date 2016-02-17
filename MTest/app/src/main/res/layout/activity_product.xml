@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/margin.50">
+
+        <TextView
+            android:id="@+id/tvHeaderProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/tv.product"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/margin.30"
+            android:layout_height="@dimen/margin.30"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin.10"
+            android:visibility="gone"
+            android:background="@drawable/ic_back"
+            android:onClick="onBackClick" />
+
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="@dimen/margin.30"
+            android:layout_height="@dimen/margin.30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin.10"
+            android:background="@drawable/ic_settings"
+            android:onClick="onSettingsClick" />
+    </RelativeLayout>
+
+
+    <GridView
+        android:background="@android:color/white"
+        android:id="@+id/gvProducts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlHeader"
+        android:horizontalSpacing="@dimen/padding.5"
+        android:numColumns="2"
+        android:padding="@dimen/padding.5"
+        android:verticalSpacing="@dimen/padding.5">
+
+    </GridView>
+
+</RelativeLayout>

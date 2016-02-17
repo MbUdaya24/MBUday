@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">MTest</string>
+
+
+
+    //TextView
+    <string name="tv.signup.caps">SIGN UP</string>
+    <string name="tv.signup.small">Sign Up</string>
+    <string name="tv.signin">Sign in</string>
+    <string name="tv.product">Products</string>
+    <string name="tv.order">Order</string>
+    <string name="tv.yourname">YOUR NAME</string>
+    <string name="tv.fnln">Your first name and last name</string>
+    <string name="tv.cardno">CARD NUMBER</string>
+    <string name="tv.longno">The long number on the card</string>
+    <string name="tv.cvv">CVV</string>
+    <string name="tv.digit">The 3/4 digit security code on your card</string>
+    <string name="tv.exp">EXPIRATION DATE</string>
+    <string name="tv.address.1">ADDRESS LINE 1</string>
+    <string name="tv.address.2">ADDRESS LINE 2</string>
+
+    //Button
+    <string name="btn.signup">SIGN UP VIA FACEBOOK</string>
+
+
+    //Hint
+    <string name="hint.name">NAME</string>
+    <string name="hint.email">EMAIL</string>
+    <string name="hint.password">PASSWORD</string>
+
+
+    //ERROR
+    <string name="error.notpart">Not part of the build</string>
+    <string name="error.fullname">Kindly enter full name with a minimum of 6 characters and maximum of 20 characters.</string>
+    <string name="error.email">Email id cannot be left blank. Kindly try again.</string>
+    <string name="error.password">Password cannot be left blank. Kindly try again.</string>
+    <string name="error.valid_email">Invalid email id. Kindly try again.</string>
+    <string name="error.passwordvalid">Kindly enter password with a minimum of 6 characters and not exceeding 12 characters</string>
+</resources>
