@@ -1,21 +1,19 @@
 package com.mtest.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+
 import android.widget.TextView;
 
 import com.mtest.R;
 import com.mtest.entity.Product;
-import com.mtest.ui.activity.OrderActivity;
 
-import java.io.InputStream;
+
 import java.util.ArrayList;
 
 /**
@@ -23,18 +21,20 @@ import java.util.ArrayList;
  */
 public class ProductAdapter extends BaseAdapter {
 
-    Context context;
-    LayoutInflater mInflater;
+    private final Context context;
+    private final LayoutInflater mInflater;
 
-    ArrayList<Product> mProductList;
+    private final ArrayList<Product> mProductList;
 
-    int[] products = {R.drawable.ic_one, R.drawable.ic_two, R.drawable.ic_three, R.drawable.ic_four, R.drawable.ic_five, R.drawable.ic_six,R.drawable.ic_one, R.drawable.ic_two, R.drawable.ic_three, R.drawable.ic_four};
+    private final int[] products = {R.drawable.ic_one, R.drawable.ic_two, R.drawable.ic_three, R.drawable.ic_four, R.drawable.ic_five, R.drawable.ic_six,R.drawable.ic_seven, R.drawable.ic_eight, R.drawable.ic_nine, R.drawable.ic_ten};
 
 
-    ImageView ivLogo;
-    TextView tvTitle, tvAuthor, tvPrice;
+    private ImageView ivLogo;
+    private TextView tvTitle;
+    private TextView tvAuthor;
+    private TextView tvPrice;
 
-    String price;
+    private String price;
 
 
     public ProductAdapter(Context mContext, ArrayList<Product> productList) {

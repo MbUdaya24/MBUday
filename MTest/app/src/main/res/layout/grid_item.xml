@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:padding="@dimen/padding.5"
+
         android:contentDescription="@string/desc.productLogo"
         android:src="@drawable/ic_one" />
 
@@ -24,6 +24,7 @@
             android:layout_centerHorizontal="true"
             android:padding="@dimen/padding.10"
             android:gravity="center"
+            android:singleLine="true"
             android:background="#75000000"
             android:textColor="@android:color/white"
             />
@@ -42,9 +43,8 @@
 
     <TextView
         android:id="@+id/tvAuthor"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
 
 
         android:padding="@dimen/padding.5"

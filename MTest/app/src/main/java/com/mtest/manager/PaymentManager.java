@@ -1,6 +1,6 @@
 package com.mtest.manager;
 
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -24,10 +24,10 @@ import retrofit.Retrofit;
  */
 public class PaymentManager {
 
-    Order mOrder;
+    private Order mOrder;
     private final Gson gson = new Gson();
 
-    public void saveCard(Order mPayment, Context mContext) {
+    public void saveCard(Order mPayment) {
 
 
         Retrofit client = new Retrofit.Builder()
@@ -94,7 +94,6 @@ public class PaymentManager {
     public void saveToSharedPreference(Context context, Order user) {
         if (user != null && user.firstName != null) {
             SharedPreferences pref = context.getSharedPreferences("com.mtest", Context.MODE_PRIVATE);
-            ;
             SharedPreferences.Editor editor = pref.edit();
             String json = gson.toJson(user);
             editor.putString(Config.USER_SHARED_PREFERENCE_KEY, json);

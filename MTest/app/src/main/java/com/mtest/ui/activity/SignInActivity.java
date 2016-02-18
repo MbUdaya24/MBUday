@@ -20,12 +20,14 @@ import com.squareup.otto.Subscribe;
 public class SignInActivity extends BaseActivity {
 
 
-    UserManager mUserManager;
-    User mUser;
+    private UserManager mUserManager;
+    private User mUser;
 
-    EditText etEmail, etPassword;
+    private EditText etEmail;
+    private EditText etPassword;
 
-    String emailId, password;
+    private String emailId;
+    private String password;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,12 @@ public class SignInActivity extends BaseActivity {
 
 
 
-    public void initManager() {
+    private void initManager() {
         mUserManager = new UserManager();
         mUser = new User();
     }
 
-    public void initUi() {
+    private void initUi() {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
     }
@@ -58,7 +60,7 @@ public class SignInActivity extends BaseActivity {
         }
     }
 
-    public void onDoneClick() {
+    private void onDoneClick() {
         etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -79,7 +81,7 @@ public class SignInActivity extends BaseActivity {
 
     public void onFBLoginClick(View v) {
         Toast.makeText(this, R.string.error_notpart, Toast.LENGTH_SHORT).show();
-        ;
+
     }
 
 
@@ -96,7 +98,7 @@ public class SignInActivity extends BaseActivity {
         Utility.hideKeyBoard(this);
     }
 
-    public void checkValidation() {
+    private void checkValidation() {
         emailId = etEmail.getText().toString().trim();
         password = etPassword.getText().toString().trim();
 
@@ -105,7 +107,7 @@ public class SignInActivity extends BaseActivity {
             Utility.showToast(getResources().getString(R.string.error_email), this);
         } else if (!Utility.nullCheck(password)) {
             Utility.showToast(getResources().getString(R.string.error_password), this);
-        } else if (!Utility.isValidEmail(emailId, this)) {
+        } else if (!Utility.isValidEmail(emailId)) {
             Utility.showToast(getResources().getString(R.string.error_valid_email), this);
         } else {
             signIn();
@@ -116,7 +118,7 @@ public class SignInActivity extends BaseActivity {
     }
 
 
-    public void signIn() {
+    private void signIn() {
         mUser.username = emailId;
         mUser.password = password;
         mUser.connection = Config.CONNNECTION;

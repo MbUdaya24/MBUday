@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class Product {
 
 
-    public String title;
-    public String author;
-    public String cost;
-    public String url;
+    private final String title;
+    private final String author;
+    private final String cost;
+
 
     public Product(String mTitle, String mAuthor,String mCost) {
          this.title = mTitle;

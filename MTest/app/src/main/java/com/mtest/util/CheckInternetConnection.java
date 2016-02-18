@@ -15,10 +15,7 @@ import com.mtest.R;
  */
 
 public class CheckInternetConnection {
-    private final Context mContext;
-    public CheckInternetConnection(Context context) {
-        this.mContext = context;
-    }
+
 
     public  static boolean checkInternet(Context mContext) {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);

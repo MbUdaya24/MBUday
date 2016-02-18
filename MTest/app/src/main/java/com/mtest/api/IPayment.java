@@ -13,5 +13,5 @@ import retrofit.http.POST;
 public interface IPayment {
 
     @POST("stripe/php/charge.php")
-    public Call<Order> saveCard(@Body Order payment);
+    Call<Order> saveCard(@Body Order payment);
 }

@@ -214,10 +214,10 @@ public class Stripe {
     }
 
     interface TokenCreator {
-        public void create(Card card, String publishableKey, Executor executor, TokenCallback callback);
+        void create(Card card, String publishableKey, Executor executor, TokenCallback callback);
     }
 
     interface TokenRequester {
-        public void request(String tokenId, String publishableKey, Executor executor, TokenCallback callback);
+        void request(String tokenId, String publishableKey, Executor executor, TokenCallback callback);
     }
 }

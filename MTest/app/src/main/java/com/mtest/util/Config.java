@@ -6,12 +6,12 @@ package com.mtest.util;
 public class Config {
 
 
-    public static String PUBLISHABLE_KEY = "pk_test_6pRNASCoBOKtIshFeQd4XMUh";
-    public static String CLIENT_ID = "Co0H3jlnnVxZb1UlFLcdXGIAWasrMtQY";
-    public static String CONNNECTION = "Username-Password-Authentication";
-    public static String USER_SHARED_PREFERENCE_KEY = "order";
+    public static final String PUBLISHABLE_KEY = "pk_test_6pRNASCoBOKtIshFeQd4XMUh";
+    public static final String CLIENT_ID = "Co0H3jlnnVxZb1UlFLcdXGIAWasrMtQY";
+    public static final String CONNNECTION = "Username-Password-Authentication";
+    public static final String USER_SHARED_PREFERENCE_KEY = "order";
 
 
-    public static String HOST_URL = "https://mbudaya.auth0.com";
-    public static String SAVE_CARD = "http://104.155.195.156/projects/";
+    public static final String HOST_URL = "https://mbudaya.auth0.com";
+    public static final String SAVE_CARD = "http://104.155.195.156/projects/";
 }

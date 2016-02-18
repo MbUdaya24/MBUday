@@ -29,17 +29,29 @@ import com.stripe.android.model.Token;
 public class OrderActivity extends BaseActivity {
 
 
-    PaymentManager mPaymentManager;
-    Order order;
+    private PaymentManager mPaymentManager;
+    private Order order;
 
-    EditText etFirstName, etLastName, etCardNumber, etCvv, etAddress1, etAddress2, etCity, etState, etCountry, etZipCode, etComments, etMonth, etYear;
-    Button btnPayment;
-    RelativeLayout rlSucess;
+    private EditText etFirstName;
+    private EditText etLastName;
+    private EditText etCardNumber;
+    private EditText etCvv;
+    private EditText etAddress1;
+    private EditText etAddress2;
+    private EditText etCity;
+    private EditText etState;
+    private EditText etCountry;
+    private EditText etZipCode;
+    private EditText etComments;
+    private EditText etMonth;
+    private EditText etYear;
+    private Button btnPayment;
+    private RelativeLayout rlSucess;
 
 
-    String price;
+    private String price;
 
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -58,7 +70,7 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public void initUi() {
+    private void initUi() {
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
@@ -81,13 +93,13 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public void initManager() {
+    private void initManager() {
         mPaymentManager = new PaymentManager();
 
     }
 
 
-    public void creditCardFormat() {
+    private void creditCardFormat() {
         etCardNumber.addTextChangedListener(new TextWatcher() {
             private static final char space = ' ';
 
@@ -143,7 +155,7 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public void onDoneClick() {
+    private void onDoneClick() {
         etComments.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -159,7 +171,7 @@ public class OrderActivity extends BaseActivity {
 
 
 
-    public void getOrderDetails() {
+    private void getOrderDetails() {
         order = new Order();
         order.firstName = etFirstName.getText().toString().trim();
         order.lastName = etLastName.getText().toString().trim();
@@ -178,7 +190,7 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public void setOrderDetails() {
+    private void setOrderDetails() {
 
         order = mPaymentManager.loadFromSharedPreference(this);
         Intent getData = getIntent();
@@ -207,7 +219,7 @@ public class OrderActivity extends BaseActivity {
 
 
 
-    public void orderPayment() {
+    private void orderPayment() {
 
 
         if (Utility.nullCheck(etFirstName.getText().toString().trim())&&
@@ -238,7 +250,7 @@ public class OrderActivity extends BaseActivity {
 
 
 
-    public void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {
+    private void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {
         dialog = ProgressDialog.show(this, "", "loading...");
 
         Card card = new Card(
@@ -263,7 +275,7 @@ public class OrderActivity extends BaseActivity {
 
                     order.stripeToken = token.getId();
                     order.amount = price;
-                    mPaymentManager.saveCard(order, OrderActivity.this);
+                    mPaymentManager.saveCard(order);
                 }
             });
         } else if (!card.validateNumber()) {

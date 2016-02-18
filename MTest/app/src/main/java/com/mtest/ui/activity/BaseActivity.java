@@ -3,7 +3,7 @@ package com.mtest.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.widget.Toast;
 
 
@@ -44,7 +44,7 @@ public class BaseActivity extends Activity {
         ApplicationBus.getInstance().unregister(this);
     }
 
-    public void showMessage(String message) {
+    private void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 

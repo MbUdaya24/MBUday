@@ -13,11 +13,11 @@ public interface IUser {
 
 
     @POST("/dbconnections/signup")
-    public Call<User> register(@Body User user);
+    Call<User> register(@Body User user);
 
 
     @POST("/oauth/ro")
-    public Call<User> login(@Body User user);
+    Call<User> login(@Body User user);
 
 
 

@@ -20,12 +20,16 @@ import com.squareup.otto.Subscribe;
 public class SignUpActivity extends BaseActivity {
 
 
-    UserManager mUserManager;
-    User mSignUpUser;
+    private UserManager mUserManager;
+    private User mSignUpUser;
 
-    EditText etName,etEmail,etPassword;
+    private EditText etName;
+    private EditText etEmail;
+    private EditText etPassword;
 
-    String name,emailId,password;
+    private String name;
+    private String emailId;
+    private String password;
 
 
 
@@ -41,12 +45,12 @@ public class SignUpActivity extends BaseActivity {
     }
 
 
-    public void initManager(){
+    private void initManager(){
         mUserManager = new UserManager();
         mSignUpUser = new User();
     }
 
-    public void initUi(){
+    private void initUi(){
         etName = (EditText)findViewById(R.id.etName);
         etEmail = (EditText)findViewById(R.id.etEmail);
         etPassword = (EditText)findViewById(R.id.etPassword);
@@ -61,7 +65,7 @@ public class SignUpActivity extends BaseActivity {
         }
     }
 
-    public void onDoneClick(){
+    private void onDoneClick(){
         etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -95,7 +99,7 @@ public class SignUpActivity extends BaseActivity {
     }
 
 
-    public void checkValidation() {
+    private void checkValidation() {
         name = etName.getText().toString().trim();
         emailId = etEmail.getText().toString().trim();
         password = etPassword.getText().toString().trim();
@@ -107,7 +111,7 @@ public class SignUpActivity extends BaseActivity {
             Utility.showToast(getResources().getString(R.string.error_email), this);
         } else if (!Utility.nullCheck(password)) {
             Utility.showToast(getResources().getString(R.string.error_password), this);
-        } else if (!Utility.isValidEmail(emailId, this)) {
+        } else if (!Utility.isValidEmail(emailId)) {
             Utility.showToast(getResources().getString(R.string.error_valid_email), this);
         } else {
             signUp();
@@ -119,7 +123,7 @@ public class SignUpActivity extends BaseActivity {
 
 
 
-    public void signUp(){
+    private void signUp(){
         mSignUpUser.connection = Config.CONNNECTION;
         mSignUpUser.email = emailId;
         mSignUpUser.password = password;

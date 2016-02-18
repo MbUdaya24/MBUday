@@ -18,24 +18,21 @@ import com.mtest.manager.PaymentManager;
 import com.mtest.manager.UserManager;
 import com.mtest.ui.adapter.ProductAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
+
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+
 
 public class ProductActivity extends BaseActivity {
 
-    GridView gridView;
-    ProductAdapter mProductAdapter;
-    UserManager mUserManager;
-    PaymentManager mPaymentManager;
+    private GridView gridView;
+    private ProductAdapter mProductAdapter;
+    private UserManager mUserManager;
+    private PaymentManager mPaymentManager;
 
-    Product product;
+    private Product product;
 
 
     @Override
@@ -50,7 +47,7 @@ public class ProductActivity extends BaseActivity {
     }
 
 
-    public void init() {
+    private void init() {
         gridView = (GridView) findViewById(R.id.gvProducts);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,7 +99,7 @@ public class ProductActivity extends BaseActivity {
 
         mUserManager = new UserManager();
         mPaymentManager = new PaymentManager();
-        String json = null;
+        String json;
         try {
             InputStream inputStream = getAssets().open("Product.json");
             byte[] buffer = new byte[inputStream.available()];

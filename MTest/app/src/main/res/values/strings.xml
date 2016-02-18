@@ -14,7 +14,7 @@
     <string name="tv.cardno">CARD NUMBER</string>
     <string name="tv.longno">The long number on the card</string>
     <string name="tv.cvv">CVV</string>
-    <string name="tv.digit">The 3/4 digit security code on your card</string>
+    <string name="tv.digit"><![CDATA[The &#190; digit security code on your card]]></string>
     <string name="tv.exp">EXPIRATION DATE</string>
     <string name="tv.address.1">ADDRESS LINE 1</string>
     <string name="tv.address.2">ADDRESS LINE 2</string>

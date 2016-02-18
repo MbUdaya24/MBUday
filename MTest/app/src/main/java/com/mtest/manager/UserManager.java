@@ -78,7 +78,7 @@ public class UserManager {
 
 
     public void loadFromSharedPreference(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("MyPref", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         isLogin = pref.getBoolean("isLogin", false);
 
 
@@ -86,7 +86,7 @@ public class UserManager {
 
 
     public void saveToSharedPreference(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("MyPref", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isLogin", isLogin);
         editor.apply();
