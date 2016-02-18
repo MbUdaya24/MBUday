@@ -23,6 +23,13 @@
 
         </activity>
         <activity
+            android:name=".ui.activity.BaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+        </activity>
+        <activity
             android:name=".ui.activity.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"

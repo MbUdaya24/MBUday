@@ -34,6 +34,7 @@ public class ProductAdapter extends BaseAdapter {
     ImageView ivLogo;
     TextView tvTitle, tvAuthor, tvPrice;
 
+    String price;
 
 
     public ProductAdapter(Context mContext, ArrayList<Product> productList) {
@@ -71,7 +72,8 @@ public class ProductAdapter extends BaseAdapter {
 
         tvTitle.setText(mProductList.get(position).getTitle());
         tvAuthor.setText(mProductList.get(position).getAuthor());
-        tvPrice.setText("$"+mProductList.get(position).getCost());
+        price = "$"+mProductList.get(position).getCost();
+        tvPrice.setText(price);
         ivLogo.setImageResource(products[position]);
 
 

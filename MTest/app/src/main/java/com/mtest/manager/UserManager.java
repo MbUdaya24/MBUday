@@ -89,7 +89,7 @@ public class UserManager {
         SharedPreferences pref = context.getSharedPreferences("MyPref", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isLogin", isLogin);
-        editor.commit();
+        editor.apply();
 
     }
 

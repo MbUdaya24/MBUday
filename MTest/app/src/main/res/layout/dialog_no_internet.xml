@@ -28,7 +28,7 @@
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="Oops,\n You seem to have gone out of\n network coverage. Please check your wifi\n settings or mobile data connection."
+        android:text="@string/error.nointernet"
         android:textColor="#FFF"
         tools:ignore="UnusedAttribute" />
 

@@ -50,10 +50,17 @@
     <string name="error.valid_email">Invalid email id. Kindly try again.</string>
     <string name="error.passwordvalid">Kindly enter password with a minimum of 6 characters and not exceeding 12 characters</string>
     <string name="error.enteralldetails">Please enter all details</string>
+    <string name="error.nointernet">Oops,\n You seem to have gone out of\n network coverage. Please check your wifi\n settings or mobile data connection.</string>
 
     //CARD ERROR
     <string name="error.cardnumber">The card number that you entered is invalid</string>
     <string name="error.exp">The expiration date that you entered is invalid</string>
     <string name="error.cvc">The CVC code that you entered is invalid</string>
     <string name="error.carddetails">The card details that you entered are invalid</string>
+
+
+    //Content Description
+    <string name="desc.productLogo">product image</string>
+    <string name="desc.appLogo">applogo</string>
+    <string name="desc.sucess">success image</string>
 </resources>

@@ -98,7 +98,7 @@ public class PaymentManager {
             SharedPreferences.Editor editor = pref.edit();
             String json = gson.toJson(user);
             editor.putString(Config.USER_SHARED_PREFERENCE_KEY, json);
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -106,7 +106,7 @@ public class PaymentManager {
         SharedPreferences pref = context.getSharedPreferences("com.mtest", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.remove(Config.USER_SHARED_PREFERENCE_KEY);
-        editor.commit();
+        editor.apply();
         editor.clear();
     }
 }

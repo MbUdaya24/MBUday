@@ -183,8 +183,8 @@ public class OrderActivity extends BaseActivity {
         order = mPaymentManager.loadFromSharedPreference(this);
         Intent getData = getIntent();
         if (getData != null) {
-            price = getData.getStringExtra("Price");
-            btnPayment.setText("PAY $" + price);
+            price = "PAY $" +getData.getStringExtra("Price");
+            btnPayment.setText(price);
         }
         if (order != null) {
             etFirstName.setText(order.firstName);

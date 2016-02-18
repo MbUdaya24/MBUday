@@ -26,19 +26,20 @@
             android:id="@+id/btnBack"
             android:onClick="onBackClick"
             android:layout_marginLeft="@dimen/margin.10"
+            android:layout_marginRight="@dimen/margin.10"
             android:background="@drawable/ic_back"
             android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     </RelativeLayout>
     <ScrollView android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true"
         android:layout_below="@+id/rlHeader"
         android:scrollbars="none">
-    <RelativeLayout android:layout_height="fill_parent"
+    <RelativeLayout android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/rlHeader"
         android:onClick="onHideKeyBoard">
 
         <RelativeLayout android:layout_width="fill_parent"
@@ -53,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.yourname"
-                android:paddingLeft="@dimen/padding.10"
+                android:paddingLeft="@dimen/padding.5"
+                android:paddingRight="@dimen/padding.5"
                 android:id="@+id/tvYourName"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -66,6 +68,9 @@
                 android:text="@string/tv.fnln"
                 android:id="@+id/tvHintOne"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignBottom="@+id/tvYourName"
                 android:layout_toRightOf="@+id/tvYourName"
@@ -77,6 +82,9 @@
                 android:id="@+id/etFirstName"
 
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/view"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -90,10 +98,13 @@
                 android:layout_width="wrap_content"
               android:layout_marginLeft="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.2.5"
+                android:layout_marginStart="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.2.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/view"
+                android:layout_toStartOf="@+id/view"
                 android:layout_below="@+id/etFirstName"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/vFirstName" />
@@ -115,8 +126,12 @@
 
                 android:inputType="text"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/view"
                 android:layout_toRightOf="@+id/view"
+                android:layout_toEndOf="@+id/view"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -125,10 +140,12 @@
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toLeftOf="@+id/view"
+                android:layout_toStartOf="@+id/view"
                 android:layout_below="@+id/etLastName"
                 android:id="@+id/vLastName"
                 android:layout_toRightOf="@+id/vFirstName"
@@ -149,6 +166,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.cardno"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:id="@+id/tvCardNumber"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -161,6 +181,9 @@
                 android:text="@string/tv.longno"
                 android:id="@+id/tvHinttwo"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignBottom="@+id/tvCardNumber"
                 android:layout_toRightOf="@+id/tvCardNumber"
@@ -208,6 +231,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.cvv"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:id="@+id/tvCvv"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -220,6 +246,9 @@
                 android:text="@string/tv.digit"
                 android:id="@+id/tvHintthree"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignBottom="@+id/tvCvv"
                 android:layout_toRightOf="@+id/tvCvv"
@@ -263,6 +292,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.exp"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:id="@+id/tvExDate"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -281,19 +313,7 @@
                 android:background="@null"
                 />
 
-            <ImageView
-                android:layout_width="@dimen/margin.25"
-                android:layout_height="@dimen/margin.25"
-                android:id="@+id/ivArrow"
-                android:onClick="onDateClick"
-                android:layout_marginRight="@dimen/margin.10"
-                android:src="@drawable/ic_arrow"
-                android:layout_alignTop="@+id/tvDate"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/margin.10"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/margin.8" />
+
 
 
 
@@ -305,6 +325,9 @@
                 android:layout_marginTop="@dimen/margin.5"
                 android:layout_below="@+id/tvExDate"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vMonthYear"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -319,12 +342,15 @@
             <View
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.2.5"
                 android:layout_marginLeft="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.2.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/vMonthYear"
+                android:layout_toStartOf="@+id/vMonthYear"
                 android:layout_below="@+id/etMonth"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/vMonth" />
@@ -346,6 +372,9 @@
                 android:id="@+id/etYear"
                 android:layout_below="@+id/tvExDate"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vMonthYear"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -359,11 +388,15 @@
             <View
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.5"
+                android:layout_marginStart="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toLeftOf="@+id/vMonthYear"
+                android:layout_toStartOf="@+id/vMonthYear"
                 android:layout_below="@+id/etYear"
                 android:id="@+id/vYear"
                 android:layout_toRightOf="@+id/vMonthYear"
@@ -386,6 +419,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.address.1"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:id="@+id/tvAddress1"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -432,6 +468,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/tv.address.2"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:id="@+id/tvAddress2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -477,6 +516,7 @@
                android:textAppearance="?android:attr/textAppearanceMedium"
 
                android:id="@+id/tvCitydes"
+               android:layout_marginStart="@dimen/margin.10"
                android:layout_marginLeft="@dimen/margin.10"/>
 
             <EditText
@@ -485,6 +525,9 @@
                 android:id="@+id/etCity"
                 android:layout_below="@+id/tvCitydes"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vCityState"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -499,10 +542,13 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.2.5"
+                android:layout_marginStart="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.2.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/vCityState"
+                android:layout_toStartOf="@+id/vCityState"
                 android:layout_below="@+id/etCity"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/vCity" />
@@ -518,11 +564,13 @@
 
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="STATE"
+                android:text="@string/tv.state"
                 android:textAppearance="?android:attr/textAppearanceMedium"
 
                 android:id="@+id/tvStatedes"
+                android:layout_toEndOf="@+id/vCityState"
                 android:layout_toRightOf="@+id/vCityState"
+                android:layout_marginStart="@dimen/margin.10"
                 android:layout_marginLeft="@dimen/margin.10"/>
 
             <EditText
@@ -532,6 +580,9 @@
 
                 android:layout_below="@+id/tvStatedes"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vCityState"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -544,11 +595,13 @@
             <View
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toLeftOf="@+id/vCityState"
+                android:layout_toStartOf="@+id/vCityState"
                 android:layout_below="@+id/etState"
                 android:id="@+id/vStateName"
                 android:layout_toRightOf="@+id/vCity"
@@ -568,6 +621,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
 
                 android:id="@+id/tvZipdes"
+                android:layout_marginStart="@dimen/margin.10"
                 android:layout_marginLeft="@dimen/margin.10"/>
 
             <EditText
@@ -576,6 +630,9 @@
                 android:id="@+id/etZipCode"
                 android:layout_below="@+id/tvZipdes"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vZipCon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -588,12 +645,15 @@
             <View
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/margin.5"
+                android:layout_marginEnd="@dimen/margin.2.5"
                 android:layout_marginLeft="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.2.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/vZipCon"
+                android:layout_toStartOf="@+id/vZipCon"
                 android:layout_below="@+id/etZipCode"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/vZipCode" />
@@ -613,7 +673,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
 
                 android:id="@+id/tvCondes"
+                android:layout_toEndOf="@+id/vZipCon"
                 android:layout_toRightOf="@+id/vZipCon"
+                android:layout_marginStart="@dimen/margin.10"
                 android:layout_marginLeft="@dimen/margin.10"/>
 
             <EditText
@@ -622,6 +684,9 @@
                 android:id="@+id/etCountry"
                 android:layout_below="@+id/tvCondes"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignBottom="@+id/vZipCon"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -634,11 +699,13 @@
             <View
                 android:layout_height="1dp"
                 android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/margin.5"
                 android:layout_marginRight="@dimen/margin.5"
                 android:background="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toLeftOf="@+id/vZipCon"
+                android:layout_toStartOf="@+id/vZipCon"
                 android:layout_below="@+id/etCountry"
                 android:id="@+id/vCountryName"
                 android:layout_toRightOf="@+id/vZipCode"
@@ -656,7 +723,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/tv.comments"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-
+                android:layout_marginStart="@dimen/margin.10"
                 android:id="@+id/tvComdes"
                 android:layout_marginLeft="@dimen/margin.10"/>
 
@@ -666,6 +733,9 @@
                 android:id="@+id/etComments"
                 android:layout_below="@+id/tvComdes"
                 android:paddingLeft="@dimen/padding.10"
+                android:paddingRight="@dimen/padding.10"
+                android:paddingStart="@dimen/padding.10"
+                android:paddingEnd="@dimen/padding.10"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:background="@null"
@@ -713,6 +783,7 @@ android:visibility="gone"
         <ImageView android:layout_height="150dp"
             android:layout_width="150dp"
             android:id="@+id/ivSucess"
+            android:contentDescription="@string/desc.sucess"
             android:src="@drawable/ic_sucess"
             android:layout_centerInParent="true"/>
 
