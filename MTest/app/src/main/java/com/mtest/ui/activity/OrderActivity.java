@@ -87,6 +87,53 @@ public class OrderActivity extends BaseActivity {
     }
 
 
+    public void creditCardFormat() {
+        etCardNumber.addTextChangedListener(new TextWatcher() {
+            private static final char space = ' ';
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                int pos = 0;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    if (space == s.charAt(pos) && (((pos + 1) % 5) != 0 || pos + 1 == s.length())) {
+                        s.delete(pos, pos + 1);
+                    } else {
+                        pos++;
+                    }
+                }
+
+
+                pos = 4;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    final char c = s.charAt(pos);
+                    if ("0123456789".indexOf(c) >= 0) {
+                        s.insert(pos, "" + space);
+                    }
+                    pos += 5;
+                }
+            }
+        });
+    }
+
+
+    public void onPayClick(View v) {
+        orderPayment();
+
+
+    }
+
+
     public void onBackClick(View v) {
         finish();
     }
@@ -109,6 +156,7 @@ public class OrderActivity extends BaseActivity {
             }
         });
     }
+
 
 
     public void getOrderDetails() {
@@ -156,11 +204,7 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public void onPayClick(View v) {
-        orderPayment();
 
-
-    }
 
 
     public void orderPayment() {
@@ -184,51 +228,14 @@ public class OrderActivity extends BaseActivity {
             saveCreditCard(order.cardNumber, order.expMonth, order.expYear, order.cvv);
 
         } else {
-            Toast.makeText(this, "Please enter all values", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_enteralldetails, Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
 
-    public void creditCardFormat() {
-        etCardNumber.addTextChangedListener(new TextWatcher() {
-            private static final char space = ' ';
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                int pos = 0;
-                while (true) {
-                    if (pos >= s.length()) break;
-                    if (space == s.charAt(pos) && (((pos + 1) % 5) != 0 || pos + 1 == s.length())) {
-                        s.delete(pos, pos + 1);
-                    } else {
-                        pos++;
-                    }
-                }
-
-
-                pos = 4;
-                while (true) {
-                    if (pos >= s.length()) break;
-                    final char c = s.charAt(pos);
-                    if ("0123456789".indexOf(c) >= 0) {
-                        s.insert(pos, "" + space);
-                    }
-                    pos += 5;
-                }
-            }
-        });
-    }
 
 
     public void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {

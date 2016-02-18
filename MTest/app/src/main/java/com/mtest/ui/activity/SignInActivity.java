@@ -38,27 +38,6 @@ public class SignInActivity extends BaseActivity {
         onDoneClick();
     }
 
-    public void onBackClick(View v) {
-        finish();
-    }
-
-    public void onFBLoginClick(View v) {
-        Toast.makeText(this, R.string.error_notpart, Toast.LENGTH_SHORT).show();
-        ;
-    }
-
-    public void onSignInClick(View v) {
-        if (CheckInternetConnection.checkInternet(this)) {
-            checkValidation();
-        } else {
-            CheckInternetConnection.noInternet(this);
-        }
-    }
-
-
-    public void onHideKeyBoard(View v) {
-        Utility.hideKeyBoard(this);
-    }
 
 
     public void initManager() {
@@ -71,34 +50,13 @@ public class SignInActivity extends BaseActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
     }
 
-
-    public void loginApiCall() {
-        mUser.username = emailId;
-        mUser.password = password;
-        mUser.connection = Config.CONNNECTION;
-        mUser.clientId = Config.CLIENT_ID;
-        mUserManager.login(mUser, this, true);
-    }
-
-    public void checkValidation() {
-        emailId = etEmail.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-
-
-        if (!Utility.nullCheck(emailId)) {
-            Utility.showToast(getResources().getString(R.string.error_email), this);
-        } else if (!Utility.nullCheck(password)) {
-            Utility.showToast(getResources().getString(R.string.error_password), this);
-        } else if (!Utility.isValidEmail(emailId, this)) {
-            Utility.showToast(getResources().getString(R.string.error_valid_email), this);
+    public void onSignInClick(View v) {
+        if (CheckInternetConnection.checkInternet(this)) {
+            checkValidation();
         } else {
-            loginApiCall();
-
+            CheckInternetConnection.noInternet(this);
         }
-
-
     }
-
 
     public void onDoneClick() {
         etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -118,6 +76,58 @@ public class SignInActivity extends BaseActivity {
             }
         });
     }
+
+    public void onFBLoginClick(View v) {
+        Toast.makeText(this, R.string.error_notpart, Toast.LENGTH_SHORT).show();
+        ;
+    }
+
+
+    public void onBackClick(View v) {
+        finish();
+    }
+
+
+
+
+
+
+    public void onHideKeyBoard(View v) {
+        Utility.hideKeyBoard(this);
+    }
+
+    public void checkValidation() {
+        emailId = etEmail.getText().toString().trim();
+        password = etPassword.getText().toString().trim();
+
+
+        if (!Utility.nullCheck(emailId)) {
+            Utility.showToast(getResources().getString(R.string.error_email), this);
+        } else if (!Utility.nullCheck(password)) {
+            Utility.showToast(getResources().getString(R.string.error_password), this);
+        } else if (!Utility.isValidEmail(emailId, this)) {
+            Utility.showToast(getResources().getString(R.string.error_valid_email), this);
+        } else {
+            signIn();
+
+        }
+
+
+    }
+
+
+    public void signIn() {
+        mUser.username = emailId;
+        mUser.password = password;
+        mUser.connection = Config.CONNNECTION;
+        mUser.clientId = Config.CLIENT_ID;
+        mUserManager.login(mUser, this, true);
+    }
+
+
+
+
+
 
 
     @Subscribe

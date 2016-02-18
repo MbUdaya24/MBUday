@@ -705,8 +705,8 @@ android:layout_marginTop="@dimen/margin.30"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rlSucess"
-
-        android:clickable="false"
+android:visibility="gone"
+        android:clickable="true"
         android:background="#955682FE">
 
 

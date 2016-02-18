@@ -49,7 +49,7 @@
     <string name="error.password">Password cannot be left blank. Kindly try again.</string>
     <string name="error.valid_email">Invalid email id. Kindly try again.</string>
     <string name="error.passwordvalid">Kindly enter password with a minimum of 6 characters and not exceeding 12 characters</string>
-
+    <string name="error.enteralldetails">Please enter all details</string>
 
     //CARD ERROR
     <string name="error.cardnumber">The card number that you entered is invalid</string>

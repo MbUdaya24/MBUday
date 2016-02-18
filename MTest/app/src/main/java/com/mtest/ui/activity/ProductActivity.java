@@ -97,7 +97,6 @@ public class ProductActivity extends BaseActivity {
         alert.show();
     }
 
-
     private void getProductItems() {
 
 
@@ -122,6 +121,7 @@ public class ProductActivity extends BaseActivity {
 
 
     }
+
 
 
 

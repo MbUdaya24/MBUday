@@ -41,28 +41,6 @@ public class SignUpActivity extends BaseActivity {
     }
 
 
-    public void onBackClick(View v){
-        finish();
-    }
-
-
-    public void onFBLoginClick(View v){
-        Toast.makeText(this,R.string.error_notpart,Toast.LENGTH_SHORT).show();
-    }
-
-    public void onSignUpClick(View v){
-        if(CheckInternetConnection.checkInternet(this)){
-            checkValidation();
-        }else{
-            CheckInternetConnection.noInternet(this);
-        }
-    }
-
-    public void onHideKeyBoard(View v){
-        Utility.hideKeyBoard(this);
-    }
-
-
     public void initManager(){
         mUserManager = new UserManager();
         mSignUpUser = new User();
@@ -74,35 +52,14 @@ public class SignUpActivity extends BaseActivity {
         etPassword = (EditText)findViewById(R.id.etPassword);
     }
 
-    public void registerApiCall(){
-        mSignUpUser.connection = Config.CONNNECTION;
-        mSignUpUser.email = emailId;
-        mSignUpUser.password = password;
-        mSignUpUser.clientId = Config.CLIENT_ID;
-        mUserManager.login(mSignUpUser,this,false);
-    }
 
-    public void checkValidation() {
-        name = etName.getText().toString().trim();
-        emailId = etEmail.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-
-
-        if (!Utility.nullCheck(name)) {
-            Utility.showToast(getResources().getString(R.string.error_fullname), this);
-        }else if (!Utility.nullCheck(emailId)) {
-            Utility.showToast(getResources().getString(R.string.error_email), this);
-        } else if (!Utility.nullCheck(password)) {
-            Utility.showToast(getResources().getString(R.string.error_password), this);
-        } else if (!Utility.isValidEmail(emailId, this)) {
-            Utility.showToast(getResources().getString(R.string.error_valid_email), this);
-        } else {
-            registerApiCall();
+    public void onSignUpClick(View v){
+        if(CheckInternetConnection.checkInternet(this)){
+            checkValidation();
+        }else{
+            CheckInternetConnection.noInternet(this);
         }
-
-
     }
-
 
     public void onDoneClick(){
         etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -122,6 +79,58 @@ public class SignUpActivity extends BaseActivity {
             }
         });
     }
+
+    public void onFBLoginClick(View v){
+        Toast.makeText(this,R.string.error_notpart,Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void onBackClick(View v){
+        finish();
+    }
+
+
+    public void onHideKeyBoard(View v){
+        Utility.hideKeyBoard(this);
+    }
+
+
+    public void checkValidation() {
+        name = etName.getText().toString().trim();
+        emailId = etEmail.getText().toString().trim();
+        password = etPassword.getText().toString().trim();
+
+
+        if (!Utility.nullCheck(name)) {
+            Utility.showToast(getResources().getString(R.string.error_fullname), this);
+        }else if (!Utility.nullCheck(emailId)) {
+            Utility.showToast(getResources().getString(R.string.error_email), this);
+        } else if (!Utility.nullCheck(password)) {
+            Utility.showToast(getResources().getString(R.string.error_password), this);
+        } else if (!Utility.isValidEmail(emailId, this)) {
+            Utility.showToast(getResources().getString(R.string.error_valid_email), this);
+        } else {
+            signUp();
+        }
+
+
+    }
+
+
+
+
+    public void signUp(){
+        mSignUpUser.connection = Config.CONNNECTION;
+        mSignUpUser.email = emailId;
+        mSignUpUser.password = password;
+        mSignUpUser.clientId = Config.CLIENT_ID;
+        mUserManager.login(mSignUpUser,this,false);
+    }
+
+
+
+
+
 
 
     @Subscribe
