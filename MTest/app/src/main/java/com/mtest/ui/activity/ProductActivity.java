@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.mtest.R;
 import com.mtest.entity.Product;
+import com.mtest.manager.PaymentManager;
 import com.mtest.manager.UserManager;
 import com.mtest.ui.adapter.ProductAdapter;
 
@@ -20,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -27,10 +32,10 @@ public class ProductActivity extends BaseActivity {
 
     GridView gridView;
     ProductAdapter mProductAdapter;
-   UserManager mUserManager;
+    UserManager mUserManager;
+    PaymentManager mPaymentManager;
 
-
-    ArrayList<Product> mProductList;
+    Product product;
 
 
     @Override
@@ -41,48 +46,49 @@ public class ProductActivity extends BaseActivity {
 
         init();
         getProductItems();
+
     }
 
 
-    public void init(){
+    public void init() {
         gridView = (GridView) findViewById(R.id.gvProducts);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ProductActivity.this, OrderActivity.class);
+                intent.putExtra("Price",product.products.get(position).getCost().toString());
                 startActivity(intent);
             }
         });
+
     }
 
 
-
-    public void onBackClick(View v){
+    public void onBackClick(View v) {
         finish();
     }
 
 
-
-    public void onSettingsClick(View v){
+    public void onSettingsClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProductActivity.this);
         builder.setTitle(R.string.app_name)
-                .setMessage("Are you sure,want to logout ?")
+                .setMessage(R.string.dialog_logout)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
 
                         mUserManager.isLogin = false;
                         mUserManager.saveToSharedPreference(ProductActivity.this);
-
-                        Intent iLogout = new Intent(ProductActivity.this,HomeActivity.class);
+                        mPaymentManager.clearSharedPreference(ProductActivity.this);
+                        Intent iLogout = new Intent(ProductActivity.this, HomeActivity.class);
                         startActivity(iLogout);
                         finish();
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
@@ -92,55 +98,31 @@ public class ProductActivity extends BaseActivity {
     }
 
 
-    public String getProductItems() {
+    private void getProductItems() {
 
-        mProductList = new ArrayList<Product>();
+
         mUserManager = new UserManager();
-        StringBuffer sb = new StringBuffer();
-        BufferedReader br = null;
+        mPaymentManager = new PaymentManager();
+        String json = null;
         try {
-            br = new BufferedReader(new InputStreamReader(getAssets().open("Product.json")));
-            String temp;
-            while ((temp = br.readLine()) != null)
-                sb.append(temp);
+            InputStream inputStream = getAssets().open("Product.json");
+            byte[] buffer = new byte[inputStream.available()];
+            inputStream.read(buffer);
+            inputStream.close();
+            json = new String(buffer, "UTF-8");
+            Gson gson = new Gson();
+            product = gson.fromJson(json,Product.class);
+            Log.d("lenght",""+product.products.size());
+            mProductAdapter = new ProductAdapter(this,product.products);
+            gridView.setAdapter(mProductAdapter);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        String productsItems = sb.toString();
-
-        try {
-
-            JSONObject jsonObjMain = new JSONObject(productsItems);
-            JSONArray jsonArray = jsonObjMain.getJSONArray("products");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObj = jsonArray.getJSONObject(i);
-
-                String title = jsonObj.getString("title");
-                String author = jsonObj.getString("author");
-                String cost = jsonObj.getString("cost");
-
-
-                mProductList.add(new Product(title,author,cost));
-                mProductAdapter = new ProductAdapter(this,mProductList);
-                gridView.setAdapter(mProductAdapter);
-
-
-
-            }
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
 
-        return productsItems;
+
+
     }
+
 
 
     @Override

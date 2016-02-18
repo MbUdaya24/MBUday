@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_height="@dimen/margin.50"
@@ -34,17 +35,17 @@
         android:fillViewport="true"
         android:layout_below="@+id/rlHeader"
         android:scrollbars="none">
-    <LinearLayout android:layout_height="fill_parent"
+    <RelativeLayout android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:orientation="vertical"
         android:layout_below="@+id/rlHeader"
-        android:onClick="onHideKeyBoard"
-        android:weightSum="120">
+        android:onClick="onHideKeyBoard">
 
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin.20"
-            android:layout_weight="20">
+
+            android:id="@+id/rlName">
 
 
             <TextView
@@ -74,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin.40"
                 android:id="@+id/etFirstName"
-                android:text="John"
+
                 android:paddingLeft="@dimen/padding.10"
                 android:layout_alignBottom="@+id/view"
                 android:layout_alignParentLeft="true"
@@ -111,7 +112,7 @@
                 android:layout_height="@dimen/margin.40"
                 android:id="@+id/etLastName"
                 android:background="@null"
-                android:text="Adams"
+
                 android:inputType="text"
                 android:paddingLeft="@dimen/padding.10"
                 android:layout_alignBottom="@+id/view"
@@ -135,7 +136,10 @@
         </RelativeLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:layout_below="@+id/rlName"
+            android:id="@+id/rlCard"
+            android:layout_marginTop="@dimen/margin.20"
+           >
 
 
 
@@ -169,9 +173,11 @@
                android:layout_below="@+id/tvCardNumber"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-               android:text="4242424242424242"
+
                 android:padding="@dimen/padding.10"
+                android:digits="01234 56789"
                 android:inputType="number"
+                android:maxLength="19"
                 android:background="@null"
                  />
 
@@ -191,7 +197,10 @@
         </RelativeLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:layout_below="@+id/rlCard"
+            android:id="@+id/rlCvv"
+
+            android:layout_marginTop="@dimen/margin.20">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -218,12 +227,12 @@
 
             <EditText
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/margin.5"
+                android:layout_height="@dimen/margin.50"
                 android:id="@+id/etCvv"
                 android:layout_below="@+id/tvCvv"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:text="122"
+                android:maxLength="3"
                 android:padding="@dimen/padding.10"
                 android:inputType="number"
                 android:background="@null"
@@ -243,7 +252,10 @@
         </RelativeLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:layout_below="@+id/rlCvv"
+            android:id="@+id/rlExpDate"
+
+            android:layout_marginTop="@dimen/margin.20">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -264,7 +276,7 @@
                 android:layout_below="@+id/tvExDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:text="12154"
+                android:visibility="gone"
                 android:padding="@dimen/padding.10"
                 android:background="@null"
                 />
@@ -280,11 +292,91 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin.10"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/margin.8" />
+
+
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etMonth"
+                android:layout_marginTop="@dimen/margin.5"
+                android:layout_below="@+id/tvExDate"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vMonthYear"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vMonthYear"
+                android:background="@null"
+                android:inputType="number"
+                android:hint="@string/hint.month"
+
+                android:layout_toStartOf="@+id/vMonthYear" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.2.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vMonthYear"
+                android:layout_below="@+id/etMonth"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vMonth" />
+
+            <View
+                android:layout_height="@dimen/margin.50"
+                android:layout_width="2dp"
+                android:layout_marginTop="@dimen/margin.5"
+                android:layout_below="@+id/tvExDate"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vMonthYear" />
+
+
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etYear"
+                android:layout_below="@+id/tvExDate"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vMonthYear"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/vMonthYear"
+                android:background="@null"
+                android:inputType="number"
+                android:hint="@string/hint.year"
+                android:layout_toRightOf="@+id/vMonthYear" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toLeftOf="@+id/vMonthYear"
+                android:layout_below="@+id/etYear"
+                android:id="@+id/vYear"
+                android:layout_toRightOf="@+id/vMonthYear"
+                android:layout_toEndOf="@+id/vMonthYear" />
+
+
         </RelativeLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:layout_below="@+id/rlExpDate"
+            android:id="@+id/rlAddress1"
+
+            android:layout_marginTop="@dimen/margin.20">
 
 
 
@@ -308,7 +400,7 @@
                 android:layout_below="@+id/tvAddress1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:text="No.21,New Street"
+
                 android:padding="@dimen/padding.10"
                 android:background="@null"
                 android:inputType="textPostalAddress"
@@ -328,7 +420,10 @@
         </RelativeLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20">
+            android:layout_below="@+id/rlAddress1"
+            android:id="@+id/rlAddress2"
+
+            android:layout_marginTop="@dimen/margin.20">
 
 
             <TextView
@@ -351,7 +446,7 @@
                 android:layout_below="@+id/tvAddress2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:text="12154"
+
                 android:padding="@dimen/padding.10"
                 android:background="@null"
                 android:inputType="textPostalAddress"
@@ -369,6 +464,239 @@
                 android:layout_centerHorizontal="true"
                 android:id="@+id/vtvAddress2" />
         </RelativeLayout>
-    </LinearLayout>
+
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlAddress2"
+            android:layout_marginTop="@dimen/margin.20"
+            android:id="@+id/rlCityState">
+
+           <TextView android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:text="@string/tv.city"
+               android:textAppearance="?android:attr/textAppearanceMedium"
+
+               android:id="@+id/tvCitydes"
+               android:layout_marginLeft="@dimen/margin.10"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etCity"
+                android:layout_below="@+id/tvCitydes"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vCityState"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vCityState"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_toStartOf="@+id/vCityState" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.2.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vCityState"
+                android:layout_below="@+id/etCity"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vCity" />
+
+            <View
+                android:layout_height="@dimen/margin.50"
+                android:layout_width="2dp"
+                android:layout_marginTop="@dimen/margin.5"
+                android:layout_below="@+id/tvCitydes"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vCityState" />
+
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="STATE"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+
+                android:id="@+id/tvStatedes"
+                android:layout_toRightOf="@+id/vCityState"
+                android:layout_marginLeft="@dimen/margin.10"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etState"
+
+                android:layout_below="@+id/tvStatedes"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vCityState"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/vCityState"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_toRightOf="@+id/vCityState" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toLeftOf="@+id/vCityState"
+                android:layout_below="@+id/etState"
+                android:id="@+id/vStateName"
+                android:layout_toRightOf="@+id/vCity"
+                android:layout_toEndOf="@+id/vCity" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlCityState"
+
+            android:layout_marginTop="@dimen/margin.20"
+            android:id="@+id/rlCodeCountry">
+
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/tv.zipcode"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+
+                android:id="@+id/tvZipdes"
+                android:layout_marginLeft="@dimen/margin.10"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etZipCode"
+                android:layout_below="@+id/tvZipdes"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vZipCon"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vZipCon"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_toStartOf="@+id/vZipCon" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.2.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/vZipCon"
+                android:layout_below="@+id/etZipCode"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vZipCode" />
+
+            <View
+                android:layout_height="@dimen/margin.50"
+                android:layout_width="2dp"
+                android:layout_marginTop="@dimen/margin.5"
+                android:layout_below="@+id/tvZipdes"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vZipCon" />
+
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/tv.country"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+
+                android:id="@+id/tvCondes"
+                android:layout_toRightOf="@+id/vZipCon"
+                android:layout_marginLeft="@dimen/margin.10"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etCountry"
+                android:layout_below="@+id/tvCondes"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignBottom="@+id/vZipCon"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/vZipCon"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_toRightOf="@+id/vZipCon" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toLeftOf="@+id/vZipCon"
+                android:layout_below="@+id/etCountry"
+                android:id="@+id/vCountryName"
+                android:layout_toRightOf="@+id/vZipCode"
+                android:layout_toEndOf="@+id/vZipCode" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlCodeCountry"
+            android:layout_marginTop="@dimen/margin.20"
+
+            android:id="@+id/rlComments">
+
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/tv.comments"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+
+                android:id="@+id/tvComdes"
+                android:layout_marginLeft="@dimen/margin.10"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/margin.40"
+                android:id="@+id/etComments"
+                android:layout_below="@+id/tvComdes"
+                android:paddingLeft="@dimen/padding.10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:inputType="text" />
+
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/margin.5"
+                android:layout_marginRight="@dimen/margin.5"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etComments"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/vComments" />
+        </RelativeLayout>
+
+
+
+        <Button android:layout_width="fill_parent"
+            android:layout_height="@dimen/margin.60"
+android:layout_marginTop="@dimen/margin.30"
+          android:layout_below="@+id/rlComments"
+            android:id="@+id/btnPayment"
+            android:background="#1D55F7"
+            android:textColor="#FFF"
+            android:onClick="onPayClick">
+        </Button>
+    </RelativeLayout>
+
     </ScrollView>
 </RelativeLayout>

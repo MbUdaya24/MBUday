@@ -1,75 +1,74 @@
 {
-"products":[
-{
-"id":1,
-"title": "WORDS OF HOPE",
-"author": "Kendrick Kingsley Yu",
-"url":"1.jpg",
-"cost":1.99
-}
-, 
-{
-"id":2,
-"title":"Sidney Sheldon's Reckless",
-"author":"Sidney Sheldon",
-"url":"2.jpg",
-"cost":2.99
-},
-{
-"id":3,
-"title": "Bloodline",
-"author":"Sidney Sheldon",
-"url":"3.jpg",
-"cost":2.5
-},
-{
-"id":4,
-"title":"Inferno",
-"author":"Dan Brown",
-"url":"4.jpg",
-"cost":1.95
-},
-{
-"id":5,
-"title":"Hadoop Explained",
-"author":"Aravind Shenoy",
-"url":"5.jpg",
-"cost":2.95
-},
-{
-"id":6,
-"title":"Internet of Things",
-"author":"BBVA Innovation Center",
-"url":"5.jpg",
-"cost":2.95
-},
-{
-"id":7,
-"title":"The Evolution of Data Products",
-"author":"Mike Loukides",
-"url":"7.jpg",
-"cost":7.95
-},
-{
-"id":8,
-"title":"What Is HTML5?",
-"author":"Brett McLaughlin",
-"url":"8.jpg",
-"cost":1.95
-},
-{
-"id":9,
-"title":"Head First Design Patterns",
-"author":"Eric Freeman",
-"url":"9.jpg",
-"cost":3.95
-},
-{
-"id":10,
-"title":"Introduction to Algorithms",
-"author":"Thomas H. Cormen",
-"url":"10.jpg",
-"cost":11.95
-}
-]
+  "products": [
+    {
+      "id": 1,
+      "title": "WORDS OF HOPE",
+      "author": "Kendrick Kingsley Yu",
+      "url": "1.jpg",
+      "cost": 1.99
+    },
+    {
+      "id": 2,
+      "title": "Sidney Sheldon's Reckless",
+      "author": "Sidney Sheldon",
+      "url": "2.jpg",
+      "cost": 2.99
+    },
+    {
+      "id": 3,
+      "title": "Bloodline",
+      "author": "Sidney Sheldon",
+      "url": "3.jpg",
+      "cost": 2.5
+    },
+    {
+      "id": 4,
+      "title": "Inferno",
+      "author": "Dan Brown",
+      "url": "4.jpg",
+      "cost": 1.95
+    },
+    {
+      "id": 5,
+      "title": "Hadoop Explained",
+      "author": "Aravind Shenoy",
+      "url": "5.jpg",
+      "cost": 2.95
+    },
+    {
+      "id": 6,
+      "title": "Internet of Things",
+      "author": "BBVA Innovation Center",
+      "url": "5.jpg",
+      "cost": 2.95
+    },
+    {
+      "id": 7,
+      "title": "The Evolution of Data Products",
+      "author": "Mike Loukides",
+      "url": "7.jpg",
+      "cost": 7.95
+    },
+    {
+      "id": 8,
+      "title": "What Is HTML5?",
+      "author": "Brett McLaughlin",
+      "url": "8.jpg",
+      "cost": 1.95
+    },
+    {
+      "id": 9,
+      "title": "Head First Design Patterns",
+      "author": "Eric Freeman",
+      "url": "9.jpg",
+      "cost": 3.95
+    },
+    {
+      "id": 10,
+      "title": "Introduction to Algorithms",
+      "author": "Thomas H. Cormen",
+      "url": "10.jpg",
+      "cost": 11.95
+    }
+  ]
 }

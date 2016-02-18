@@ -3,6 +3,7 @@ package com.mtest.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 
@@ -10,11 +11,6 @@ import com.mtest.entity.ServerError;
 import com.mtest.util.ApplicationBus;
 import com.squareup.otto.Subscribe;
 
-/*
- * Copyright 2015 (C) Mavin Apps 
- * Author   : Bala M on 8/26/2015
- * Comments :
- */
 public class BaseActivity extends Activity {
 
     @Override
@@ -30,8 +26,8 @@ public class BaseActivity extends Activity {
 
     }
 
-    private void busRegister(){
-        Object busEventListener = new Object(){
+    private void busRegister() {
+        Object busEventListener = new Object() {
             //Let Activity take care of the error messages???
             @Subscribe
             public void onError(ServerError error) {
@@ -44,14 +40,14 @@ public class BaseActivity extends Activity {
         ApplicationBus.getInstance().register(this);
     }
 
-    private void busUnRegister(){
+    private void busUnRegister() {
         ApplicationBus.getInstance().unregister(this);
     }
 
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-	
+
 
     @Subscribe
     public void onError(ServerError error) {

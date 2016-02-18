@@ -3,10 +3,8 @@ package com.mtest.util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
-/*
- * Copyright 2015 (C) Mavin Apps 
- * Author   : Bala M on 8/26/2015
- * Comments :
+/**
+ * Created by udaya on 2/15/16.
  */
 public class ApplicationBus {
 

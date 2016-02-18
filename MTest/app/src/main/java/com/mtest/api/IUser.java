@@ -19,8 +19,7 @@ public interface IUser {
     @POST("/oauth/ro")
     public Call<User> login(@Body User user);
 
-    @POST("stripe/php/charge.php")
-    public Call<User> saveCard(@Body User user);
+
 
 
 

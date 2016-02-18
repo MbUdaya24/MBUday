@@ -1,9 +1,4 @@
-package com.mtest.util;/*
- * Copyright 2015 (C) Best Rankers
- *
- * Author   : MoVis
- * Comments :
- */
+package com.mtest.util;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -15,7 +10,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.mtest.R;
-
+/**
+ * Created by udaya on 2/15/16.
+ */
 
 public class CheckInternetConnection {
     private final Context mContext;

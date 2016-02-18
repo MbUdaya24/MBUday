@@ -2,14 +2,18 @@ package com.mtest.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mtest.R;
-import com.mtest.manager.UserManager;
 import com.mtest.entity.User;
+import com.mtest.manager.UserManager;
 import com.mtest.util.CheckInternetConnection;
+import com.mtest.util.Config;
 import com.mtest.util.Utility;
 import com.squareup.otto.Subscribe;
 
@@ -17,7 +21,7 @@ public class SignUpActivity extends BaseActivity {
 
 
     UserManager mUserManager;
-    User mUser,mSignUpUser;
+    User mSignUpUser;
 
     EditText etName,etEmail,etPassword;
 
@@ -33,6 +37,7 @@ public class SignUpActivity extends BaseActivity {
 
         initUi();
         initManager();
+        onDoneClick();
     }
 
 
@@ -60,7 +65,6 @@ public class SignUpActivity extends BaseActivity {
 
     public void initManager(){
         mUserManager = new UserManager();
-        mUser = new User();
         mSignUpUser = new User();
     }
 
@@ -71,10 +75,10 @@ public class SignUpActivity extends BaseActivity {
     }
 
     public void registerApiCall(){
-        mSignUpUser.connection = mUser.connection;
+        mSignUpUser.connection = Config.CONNNECTION;
         mSignUpUser.email = emailId;
         mSignUpUser.password = password;
-        mSignUpUser.client_id = mUser.client_id;
+        mSignUpUser.clientId = Config.CLIENT_ID;
         mUserManager.login(mSignUpUser,this,false);
     }
 
@@ -100,6 +104,25 @@ public class SignUpActivity extends BaseActivity {
     }
 
 
+    public void onDoneClick(){
+        etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    if(CheckInternetConnection.checkInternet(SignUpActivity.this)){
+                        checkValidation();
+                    }else{
+                        CheckInternetConnection.noInternet(SignUpActivity.this);
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
 
     @Subscribe
     public void signUpSucess(User user){
@@ -110,7 +133,7 @@ public class SignUpActivity extends BaseActivity {
             mUserManager.isLogin = true;
             mUserManager.saveToSharedPreference(this);
         }else{
-            Toast.makeText(this,user.error_description,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,user.errorDescription,Toast.LENGTH_SHORT).show();
         }
     }
 

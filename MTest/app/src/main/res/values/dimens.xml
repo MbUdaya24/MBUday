@@ -7,6 +7,7 @@
     //TextSize
     <dimen name="tv.12">12dp</dimen>
     <dimen name="tv.14">14dp</dimen>
+    <dimen name="tv.18">18dp</dimen>
 
 
     //Margin

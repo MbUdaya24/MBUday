@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class Utility {
     //nullCheck
     public static boolean nullCheck(String nullCheckString) {
 
+
         if (nullCheckString != null) {
             if (nullCheckString.length() > 0 && !nullCheckString.equals("")
                     && !nullCheckString.equals("null")
@@ -64,7 +66,9 @@ public class Utility {
 
     //isValidEmail
     public static boolean isValidEmail(String target, Context mContext) {
-        target.trim();
+
+
+
         if (target == null || target.equals("")) {
             //Toast.makeText(mContext, "Please enter email id", Toast.LENGTH_SHORT).show();
             return false;

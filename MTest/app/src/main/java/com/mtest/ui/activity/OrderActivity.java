@@ -1,50 +1,40 @@
 package com.mtest.ui.activity;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mtest.R;
-import com.mtest.android.Stripe;
-import com.mtest.android.TokenCallback;
-import com.mtest.android.model.Card;
-import com.mtest.android.model.Token;
-import com.mtest.entity.User;
-import com.mtest.manager.UserManager;
+
+import com.mtest.entity.Order;
+import com.mtest.manager.PaymentManager;
+import com.mtest.util.Config;
 import com.mtest.util.Utility;
 import com.squareup.otto.Subscribe;
-
-
-import java.util.Calendar;
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
 
 public class OrderActivity extends BaseActivity {
 
 
-    UserManager mUserManager;
-    User mUser;
+    PaymentManager mPaymentManager;
+    Order order;
 
-    EditText etFirstName,etLastName,etCardNumber,etCvv,etAddress1,etAddress2;
-
-
-
-    static TextView tvDate;
-    static int year;
-    static int month;
-    static int day;
+    EditText etFirstName, etLastName, etCardNumber, etCvv, etAddress1, etAddress2, etCity, etState, etCountry, etZipCode, etComments, etMonth, etYear;
+    Button btnPayment;
 
 
-    //Payment
-    public static final String PUBLISHABLE_KEY = "pk_test_6pRNASCoBOKtIshFeQd4XMUh";
-
+    String price;
 
 
     @Override
@@ -55,55 +45,56 @@ public class OrderActivity extends BaseActivity {
 
         initUi();
         initManager();
+        creditCardFormat();
         onDoneClick();
+        setOrderDetails();
 
 
     }
 
 
+    public void initUi() {
 
+        etFirstName = (EditText) findViewById(R.id.etFirstName);
+        etLastName = (EditText) findViewById(R.id.etLastName);
+        etCardNumber = (EditText) findViewById(R.id.etCardNumber);
+        etCvv = (EditText) findViewById(R.id.etCvv);
+        etAddress1 = (EditText) findViewById(R.id.etAddress1);
+        etAddress2 = (EditText) findViewById(R.id.etAddress2);
+        etCity = (EditText) findViewById(R.id.etCity);
+        etState = (EditText) findViewById(R.id.etState);
+        etCountry = (EditText) findViewById(R.id.etCountry);
+        etZipCode = (EditText) findViewById(R.id.etZipCode);
+        etComments = (EditText) findViewById(R.id.etComments);
+        btnPayment = (Button) findViewById(R.id.btnPayment);
+        etMonth = (EditText) findViewById(R.id.etMonth);
+        etYear = (EditText) findViewById(R.id.etYear);
 
-
-    public void initUi(){
-        tvDate = (TextView)findViewById(R.id.tvDate);
-        etFirstName = (EditText)findViewById(R.id.etFirstName);
-        etLastName = (EditText)findViewById(R.id.etLastName);
-        etCardNumber = (EditText)findViewById(R.id.etCardNumber);
-        etCvv = (EditText)findViewById(R.id.etCvv);
-        etAddress1 = (EditText)findViewById(R.id.etAddress1);
-        etAddress2 = (EditText)findViewById(R.id.etAddress2);
     }
 
 
-    public void initManager(){
-        mUserManager  = new UserManager();
-        mUser = new User();
+    public void initManager() {
+        mPaymentManager = new PaymentManager();
+
     }
 
 
-
-    public void onBackClick(View v){
+    public void onBackClick(View v) {
         finish();
     }
 
-    public void onHideKeyBoard(View v){
+    public void onHideKeyBoard(View v) {
         Utility.hideKeyBoard(this);
     }
-    public void onDateClick(View v){
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-
-    }
 
 
-    public void onDoneClick(){
-        etAddress2.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+    public void onDoneClick() {
+        etComments.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
-                    saveCreditCard(etCardNumber.getText().toString(),month,year,etCvv.getText().toString());
-
+                    orderPayment();
                     return true;
                 }
                 return false;
@@ -112,84 +103,172 @@ public class OrderActivity extends BaseActivity {
     }
 
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+    public void getOrderDetails() {
+        order = new Order();
+        order.firstName = etFirstName.getText().toString().trim();
+        order.lastName = etLastName.getText().toString().trim();
+        order.cardNumber = etCardNumber.getText().toString().trim();
+        order.cvv = etCvv.getText().toString().trim();
+        order.expMonth = Integer.parseInt(etMonth.getText().toString().trim());
+        order.expYear = Integer.parseInt(etYear.getText().toString().trim());
+        order.address1 = etAddress1.getText().toString().trim();
+        order.address2 = etAddress2.getText().toString().trim();
+        order.city = etCity.getText().toString().trim();
+        order.state = etState.getText().toString().trim();
+        order.zipCode = etZipCode.getText().toString().trim();
+        order.country = etCountry.getText().toString().trim();
+        order.comments = etComments.getText().toString().trim();
+        mPaymentManager.saveToSharedPreference(this, order);
+    }
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-            final Calendar c = Calendar.getInstance();
-             year = c.get(Calendar.YEAR);
-             month = c.get(Calendar.MONTH);
-             day = c.get(Calendar.DAY_OF_MONTH);
+    public void setOrderDetails() {
 
-
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+        order = mPaymentManager.loadFromSharedPreference(this);
+        Intent getData = getIntent();
+        if (getData != null) {
+            price = getData.getStringExtra("Price");
+            btnPayment.setText("PAY $" + price);
         }
-
-        public void onDateSet(DatePicker view, int  selectedyear, int  selectedmonth, int  selectedday) {
-
-            year = selectedyear;
-            month = selectedmonth;
-            day = selectedday;
-
-
-            tvDate.setText(new StringBuilder().append(month + 1)
-                    .append("/").append(day).append("/").append(year)
-                    .append(" "));
+        if (order != null) {
+            etFirstName.setText(order.firstName);
+            etLastName.setText(order.lastName);
+            etCardNumber.setText(order.cardNumber);
+            etCvv.setText(order.cvv);
+            etMonth.setText(String.valueOf(order.expMonth));
+            etYear.setText(String.valueOf(order.expYear));
+            etAddress1.setText(order.address1);
+            etAddress2.setText(order.address2);
+            etCity.setText(order.city);
+            etState.setText(order.state);
+            etCountry.setText(order.country);
+            etComments.setText(order.comments);
         }
     }
 
 
-    public void saveCreditCard(String CardNumber,Integer ExpMonth,Integer ExpYear,String Cvc) {
+    public void onPayClick(View v) {
+        orderPayment();
+
+
+    }
+
+
+    public void orderPayment() {
+
+
+        if (Utility.nullCheck(etFirstName.getText().toString().trim())&&
+                Utility.nullCheck(etLastName.getText().toString().trim())&&
+                Utility.nullCheck(etCardNumber.getText().toString().trim()) &&
+                Utility.nullCheck(etCvv.getText().toString().trim()) &&
+                Utility.nullCheck(etMonth.getText().toString().trim()) &&
+                Utility.nullCheck(etYear.getText().toString().trim()) &&
+                Utility.nullCheck(etAddress1.getText().toString().trim()) &&
+                Utility.nullCheck(etAddress2.getText().toString().trim()) &&
+                Utility.nullCheck(etCity.getText().toString().trim()) &&
+                Utility.nullCheck(etState.getText().toString().trim()) &&
+                Utility.nullCheck(etZipCode.getText().toString().trim()) &&
+                Utility.nullCheck(etComments.getText().toString().trim())) {
+
+
+            getOrderDetails();
+            saveCreditCard(order.cardNumber, order.expMonth, order.expYear, order.cvv);
+
+        } else {
+            Toast.makeText(this, "Please enter all values", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+
+    public void creditCardFormat() {
+        etCardNumber.addTextChangedListener(new TextWatcher() {
+            private static final char space = ' ';
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                int pos = 0;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    if (space == s.charAt(pos) && (((pos + 1) % 5) != 0 || pos + 1 == s.length())) {
+                        s.delete(pos, pos + 1);
+                    } else {
+                        pos++;
+                    }
+                }
+
+
+                pos = 4;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    final char c = s.charAt(pos);
+                    if ("0123456789".indexOf(c) >= 0) {
+                        s.insert(pos, "" + space);
+                    }
+                    pos += 5;
+                }
+            }
+        });
+    }
+
+
+    public void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {
+
 
         Card card = new Card(
                 CardNumber,
-                2,
-                2020,
-                "123");
+                ExpMonth,
+                ExpYear,
+                Cvc);
         card.setCurrency("usd");
 
         boolean validation = card.validateCard();
         if (validation) {
 
 
+            new Stripe().createToken(card, Config.PUBLISHABLE_KEY, new TokenCallback() {
+                @Override
+                public void onError(Exception error) {
 
+                }
 
+                @Override
+                public void onSuccess(Token token) {
 
-           new Stripe().createToken(card, PUBLISHABLE_KEY, new TokenCallback() {
-               @Override
-               public void onError(Exception error) {
-
-               }
-
-               @Override
-               public void onSuccess(Token token) {
-                   Log.e("onSuccess",token.getId()+"");
-                   mUser.stripeToken = token.getId();
-                   mUser.amount = "90";
-                   mUserManager.saveCard(mUser,OrderActivity.this);
-               }
-           });
+                    order.stripeToken = token.getId();
+                    order.amount = price;
+                    mPaymentManager.saveCard(order, OrderActivity.this);
+                }
+            });
         } else if (!card.validateNumber()) {
-            Toast.makeText(OrderActivity.this,"The card number that you entered is invalid",Toast.LENGTH_SHORT).show();
+            Toast.makeText(OrderActivity.this, R.string.error_cardnumber, Toast.LENGTH_SHORT).show();
 
         } else if (!card.validateExpiryDate()) {
-            Toast.makeText(OrderActivity.this,"The expiration date that you entered is invalid",Toast.LENGTH_SHORT).show();
+            Toast.makeText(OrderActivity.this, R.string.error_exp, Toast.LENGTH_SHORT).show();
 
         } else if (!card.validateCVC()) {
-            Toast.makeText(OrderActivity.this,"The CVC code that you entered is invalid",Toast.LENGTH_SHORT).show();
+            Toast.makeText(OrderActivity.this, R.string.error_cvc, Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(OrderActivity.this,"The card details that you entered are invalid",Toast.LENGTH_SHORT).show();
+            Toast.makeText(OrderActivity.this, R.string.error_carddetails, Toast.LENGTH_SHORT).show();
 
         }
     }
 
 
     @Subscribe
-    public void onCreditSucess(User user){
-        Log.e("SUCESSS","Sucesss");
+    public void onCreditSucess(Order payment) {
+        Toast.makeText(this, "SUCESS", Toast.LENGTH_SHORT).show();
     }
 
 }
