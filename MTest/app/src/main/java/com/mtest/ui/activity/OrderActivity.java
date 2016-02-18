@@ -1,5 +1,6 @@
 package com.mtest.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +34,12 @@ public class OrderActivity extends BaseActivity {
 
     EditText etFirstName, etLastName, etCardNumber, etCvv, etAddress1, etAddress2, etCity, etState, etCountry, etZipCode, etComments, etMonth, etYear;
     Button btnPayment;
+    RelativeLayout rlSucess;
 
 
     String price;
+
+    ProgressDialog dialog;
 
 
     @Override
@@ -69,6 +74,9 @@ public class OrderActivity extends BaseActivity {
         btnPayment = (Button) findViewById(R.id.btnPayment);
         etMonth = (EditText) findViewById(R.id.etMonth);
         etYear = (EditText) findViewById(R.id.etYear);
+        rlSucess = (RelativeLayout)findViewById(R.id.rlSucess);
+
+
 
     }
 
@@ -143,6 +151,7 @@ public class OrderActivity extends BaseActivity {
             etState.setText(order.state);
             etCountry.setText(order.country);
             etComments.setText(order.comments);
+            etZipCode.setText(order.zipCode);
         }
     }
 
@@ -223,7 +232,7 @@ public class OrderActivity extends BaseActivity {
 
 
     public void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {
-
+        dialog = ProgressDialog.show(this, "", "loading...");
 
         Card card = new Card(
                 CardNumber,
@@ -268,7 +277,15 @@ public class OrderActivity extends BaseActivity {
 
     @Subscribe
     public void onCreditSucess(Order payment) {
-        Toast.makeText(this, "SUCESS", Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+        rlSucess.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        },3000);
+        rlSucess.setVisibility(View.VISIBLE);
+
     }
 
 }

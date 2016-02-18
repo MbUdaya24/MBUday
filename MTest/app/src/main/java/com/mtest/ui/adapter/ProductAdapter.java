@@ -71,7 +71,7 @@ public class ProductAdapter extends BaseAdapter {
 
         tvTitle.setText(mProductList.get(position).getTitle());
         tvAuthor.setText(mProductList.get(position).getAuthor());
-        tvPrice.setText(mProductList.get(position).getCost());
+        tvPrice.setText("$"+mProductList.get(position).getCost());
         ivLogo.setImageResource(products[position]);
 
 

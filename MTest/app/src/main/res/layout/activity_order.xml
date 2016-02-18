@@ -21,8 +21,8 @@
             android:layout_centerInParent="true" />
 
         <Button
-            android:layout_width="@dimen/margin.30"
-            android:layout_height="@dimen/margin.30"
+            android:layout_width="@dimen/margin.25"
+            android:layout_height="@dimen/margin.25"
             android:id="@+id/btnBack"
             android:onClick="onBackClick"
             android:layout_marginLeft="@dimen/margin.10"
@@ -699,4 +699,32 @@ android:layout_marginTop="@dimen/margin.30"
     </RelativeLayout>
 
     </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rlSucess"
+
+        android:clickable="false"
+        android:background="#955682FE">
+
+
+        <ImageView android:layout_height="150dp"
+            android:layout_width="150dp"
+            android:id="@+id/ivSucess"
+            android:src="@drawable/ic_sucess"
+            android:layout_centerInParent="true"/>
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/tv.sucess"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="@dimen/padding.5"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ivSucess"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
 </RelativeLayout>

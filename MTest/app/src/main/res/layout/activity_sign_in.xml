@@ -81,7 +81,7 @@
                 android:background="@null"
                 android:padding="@dimen/padding.5"
                 android:hint="@string/hint.email"
-
+                android:textColorHint="@android:color/black"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/etName"/>
             <View
@@ -102,12 +102,11 @@
                 android:padding="@dimen/padding.5"
                 android:textSize="@dimen/tv.14"
                 android:id="@+id/etPassword"
+                android:textColorHint="@android:color/black"
                 android:layout_marginRight="@dimen/margin.50"
                 android:layout_marginLeft="@dimen/margin.50"
                 android:layout_below="@+id/etEmail"
                 android:layout_marginTop="@dimen/margin.20"
-                android:drawableRight="@drawable/ic_help"
-                android:drawablePadding="@dimen/padding.5"
                 android:background="@null"
                 android:layout_centerHorizontal="true" />
             <View

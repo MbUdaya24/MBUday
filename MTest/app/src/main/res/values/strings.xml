@@ -23,6 +23,7 @@
     <string name="tv.city">CITY</string>
     <string name="tv.state">STATE</string>
     <string name="tv.country">COUNTRY</string>
+    <string name="tv.sucess">Success!</string>
 
     //Button
     <string name="btn.signup">SIGN UP VIA FACEBOOK</string>

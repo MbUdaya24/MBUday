@@ -28,7 +28,7 @@ public class PaymentManager {
     private final Gson gson = new Gson();
 
     public void saveCard(Order mPayment, Context mContext) {
-        final ProgressDialog dialog = ProgressDialog.show(mContext, "", "loading...");
+
 
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(Config.SAVE_CARD)
@@ -40,7 +40,7 @@ public class PaymentManager {
 
             @Override
             public void onResponse(Response response, Retrofit retrofit) {
-                dialog.dismiss();
+
                 if (response.isSuccess()) {
 
                     Order payment = (Order) response.body();
