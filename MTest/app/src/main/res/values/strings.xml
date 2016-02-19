@@ -14,7 +14,7 @@
     <string name="tv.cardno">CARD NUMBER</string>
     <string name="tv.longno">The long number on the card</string>
     <string name="tv.cvv">CVV</string>
-    <string name="tv.digit"><![CDATA[The &#190; digit security code on your card]]></string>
+    <string name="tv.digit">3/4 digit security code on your card></string>
     <string name="tv.exp">EXPIRATION DATE</string>
     <string name="tv.address.1">ADDRESS LINE 1</string>
     <string name="tv.address.2">ADDRESS LINE 2</string>
@@ -33,24 +33,45 @@
     <string name="hint.name">NAME</string>
     <string name="hint.email">EMAIL</string>
     <string name="hint.password">PASSWORD</string>
-    <string name="hint.month">Month</string>
-    <string name="hint.year">Year</string>
+    <string name="hint.month">MONTH</string>
+    <string name="hint.year">YEAR</string>
+    <string name="hint.firstname">FIRST NAME</string>
+    <string name="hint.lastname">LAST NAME</string>
+    <string name="hint.cardnumber">CARD NUMBER</string>
+    <string name="hint.cvv">CVV</string>
+    <string name="hint.address.1">ADDRESS LINE 1</string>
+    <string name="hint.address.2">ADDRESS LINE 2</string>
+    <string name="hint.comments">COMMENTS</string>
+    <string name="hint.zipcode">ZIP CODE</string>
+    <string name="hint.city">CITY</string>
+    <string name="hint.state">STATE</string>
+    <string name="hint.country">COUNTRY</string>
 
 
     //Dialog
-    <string name="dialog.logout">Are you sure,want to logout ?</string>
+    <string name="dialog.logout">Are you sure you want to logout?</string>
     <string name="dialog.yes">Yes</string>
     <string name="dialog.no">No</string>
 
+
+
+
+
     //ERROR
-    <string name="error.notpart">Not part of the build</string>
-    <string name="error.fullname">Kindly enter full name with a minimum of 6 characters and maximum of 20 characters.</string>
-    <string name="error.email">Email id cannot be left blank. Kindly try again.</string>
-    <string name="error.password">Password cannot be left blank. Kindly try again.</string>
-    <string name="error.valid_email">Invalid email id. Kindly try again.</string>
+    <string name="error.notpart">Not part of this build</string>
+    <string name="error.validname">Kindly enter the name with a minimum 6 characters and maximum of 20 characters and try again</string>
+    <string name="error.fullname">Name field can\'t be left blank. Kindly try again</string>
+    <string name="error.email">Email field can\'t be left blank. Kindly try again</string>
+    <string name="error.password">Password field can\'t be left blank. Kindly try again</string>
+    <string name="error.valid_email">Kindly enter a valid email and try again</string>
     <string name="error.passwordvalid">Kindly enter password with a minimum of 6 characters and not exceeding 12 characters</string>
     <string name="error.enteralldetails">Please enter all details</string>
     <string name="error.nointernet">Oops,\n You seem to have gone out of\n network coverage. Please check your wifi\n settings or mobile data connection.</string>
+
+    <string name="error.empty">Field can\'t be empty.</string>
+
+
+
 
     //CARD ERROR
     <string name="error.cardnumber">The card number that you entered is invalid</string>

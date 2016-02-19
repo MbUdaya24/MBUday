@@ -3,6 +3,7 @@ package com.mtest.ui.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -47,6 +48,19 @@ public class OrderActivity extends BaseActivity {
     private EditText etYear;
     private Button btnPayment;
     private RelativeLayout rlSucess;
+    private TextInputLayout ilFirstName;
+    private TextInputLayout ilLastName;
+    private TextInputLayout ilCardNumber;
+    private TextInputLayout ilCvv;
+    private TextInputLayout ilMonth;
+    private TextInputLayout ilYear;
+    private TextInputLayout ilAddress1;
+    private TextInputLayout ilAddress2;
+    private TextInputLayout ilCity;
+    private TextInputLayout ilState;
+    private TextInputLayout ilZipCode;
+    private TextInputLayout ilCountry;
+    private TextInputLayout ilComments;
 
 
     private String price;
@@ -89,7 +103,24 @@ public class OrderActivity extends BaseActivity {
         rlSucess = (RelativeLayout)findViewById(R.id.rlSucess);
 
 
+        ilFirstName = (TextInputLayout)findViewById(R.id.ilFirstName);
+        ilLastName = (TextInputLayout)findViewById(R.id.ilLastName);
+        ilCardNumber = (TextInputLayout)findViewById(R.id.ilCardNumber);
 
+        ilCvv = (TextInputLayout)findViewById(R.id.ilCvv);
+        ilMonth = (TextInputLayout)findViewById(R.id.ilMonth);
+        ilYear = (TextInputLayout)findViewById(R.id.ilYear);
+
+        ilAddress1 = (TextInputLayout)findViewById(R.id.ilAddress1);
+        ilAddress2 = (TextInputLayout)findViewById(R.id.ilAddress2);
+        ilCity = (TextInputLayout)findViewById(R.id.ilCity);
+
+
+        ilState = (TextInputLayout)findViewById(R.id.ilState);
+        ilZipCode = (TextInputLayout)findViewById(R.id.ilZipCode);
+        ilCountry = (TextInputLayout)findViewById(R.id.ilCountry);
+
+        ilComments = (TextInputLayout)findViewById(R.id.ilComments);
     }
 
 
@@ -140,6 +171,7 @@ public class OrderActivity extends BaseActivity {
 
 
     public void onPayClick(View v) {
+
         orderPayment();
 
 
@@ -147,6 +179,7 @@ public class OrderActivity extends BaseActivity {
 
 
     public void onBackClick(View v) {
+
         finish();
     }
 
@@ -156,6 +189,7 @@ public class OrderActivity extends BaseActivity {
 
 
     private void onDoneClick() {
+
         etComments.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -216,32 +250,59 @@ public class OrderActivity extends BaseActivity {
     }
 
 
+   private void errorDisabled(){
+       ilFirstName.setErrorEnabled(false);
+       ilLastName.setErrorEnabled(false);
+       ilCardNumber.setErrorEnabled(false);
+       ilCvv.setErrorEnabled(false);
+       ilMonth.setErrorEnabled(false);
+       ilYear.setErrorEnabled(false);
+       ilAddress1.setErrorEnabled(false);
+       ilAddress2.setErrorEnabled(false);
+       ilState.setErrorEnabled(false);
+       ilCity.setErrorEnabled(false);
+       ilZipCode.setErrorEnabled(false);
+       ilCountry.setErrorEnabled(false);
+       ilComments.setErrorEnabled(false);
+   }
 
+
+   private void validation(){
+       if (!Utility.nullCheck(etFirstName.getText().toString().trim())){
+           ilFirstName.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etLastName.getText().toString().trim())){
+           ilLastName.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etCardNumber.getText().toString().trim())){
+           ilCardNumber.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etCvv.getText().toString().trim())){
+           ilCvv.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etMonth.getText().toString().trim())){
+           ilMonth.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etYear.getText().toString().trim())){
+           ilYear.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etAddress1.getText().toString().trim())){
+           ilAddress1.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etState.getText().toString().trim())){
+           ilState.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etCity.getText().toString().trim())){
+           ilCity.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etZipCode.getText().toString().trim())){
+           ilZipCode.setError(getResources().getString(R.string.error_empty));
+       }else if(!Utility.nullCheck(etCountry.getText().toString().trim())){
+           ilCountry.setError(getResources().getString(R.string.error_empty));
+       }else{
+           getOrderDetails();
+           saveCreditCard(order.cardNumber, order.expMonth, order.expYear, order.cvv);
+       }
+
+   }
 
 
     private void orderPayment() {
 
 
-        if (Utility.nullCheck(etFirstName.getText().toString().trim())&&
-                Utility.nullCheck(etLastName.getText().toString().trim())&&
-                Utility.nullCheck(etCardNumber.getText().toString().trim()) &&
-                Utility.nullCheck(etCvv.getText().toString().trim()) &&
-                Utility.nullCheck(etMonth.getText().toString().trim()) &&
-                Utility.nullCheck(etYear.getText().toString().trim()) &&
-                Utility.nullCheck(etAddress1.getText().toString().trim()) &&
-                Utility.nullCheck(etAddress2.getText().toString().trim()) &&
-                Utility.nullCheck(etCity.getText().toString().trim()) &&
-                Utility.nullCheck(etState.getText().toString().trim()) &&
-                Utility.nullCheck(etZipCode.getText().toString().trim()) &&
-                Utility.nullCheck(etComments.getText().toString().trim())) {
-
-
-            getOrderDetails();
-            saveCreditCard(order.cardNumber, order.expMonth, order.expYear, order.cvv);
-
-        } else {
-            Toast.makeText(this, R.string.error_enteralldetails, Toast.LENGTH_SHORT).show();
-        }
+        errorDisabled();
+        validation();
 
 
     }
@@ -251,7 +312,7 @@ public class OrderActivity extends BaseActivity {
 
 
     private void saveCreditCard(String CardNumber, Integer ExpMonth, Integer ExpYear, String Cvc) {
-        dialog = ProgressDialog.show(this, "", "loading...");
+
 
         Card card = new Card(
                 CardNumber,
@@ -267,12 +328,13 @@ public class OrderActivity extends BaseActivity {
             new Stripe().createToken(card, Config.PUBLISHABLE_KEY, new TokenCallback() {
                 @Override
                 public void onError(Exception error) {
-
+                    Utility.hideKeyBoard(OrderActivity.this);
                 }
 
                 @Override
                 public void onSuccess(Token token) {
-
+                    Utility.hideKeyBoard(OrderActivity.this);
+                    dialog = ProgressDialog.show(OrderActivity.this, "", "loading...");
                     order.stripeToken = token.getId();
                     order.amount = price;
                     mPaymentManager.saveCard(order);
@@ -296,6 +358,7 @@ public class OrderActivity extends BaseActivity {
 
     @Subscribe
     public void onCreditSucess(Order payment) {
+        Utility.hideKeyBoard(OrderActivity.this);
         dialog.dismiss();
         rlSucess.postDelayed(new Runnable() {
             @Override

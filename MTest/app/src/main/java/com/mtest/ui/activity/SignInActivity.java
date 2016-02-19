@@ -2,12 +2,14 @@ package com.mtest.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.mtest.R;
 import com.mtest.entity.User;
@@ -25,6 +27,9 @@ public class SignInActivity extends BaseActivity {
 
     private EditText etEmail;
     private EditText etPassword;
+
+    private TextInputLayout ilEmail;
+    private TextInputLayout ilPassword;
 
     private String emailId;
     private String password;
@@ -50,6 +55,9 @@ public class SignInActivity extends BaseActivity {
     private void initUi() {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
+
+        ilEmail = (TextInputLayout)findViewById(R.id.ilEmail);
+        ilPassword = (TextInputLayout)findViewById(R.id.ilPassword);
     }
 
     public void onSignInClick(View v) {
@@ -61,6 +69,7 @@ public class SignInActivity extends BaseActivity {
     }
 
     private void onDoneClick() {
+        Utility.hideKeyBoard(this);
         etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -86,6 +95,7 @@ public class SignInActivity extends BaseActivity {
 
 
     public void onBackClick(View v) {
+        Utility.hideKeyBoard(this);
         finish();
     }
 
@@ -103,13 +113,18 @@ public class SignInActivity extends BaseActivity {
         password = etPassword.getText().toString().trim();
 
 
+        ilEmail.setErrorEnabled(false);
+        ilPassword.setErrorEnabled(false);
+
         if (!Utility.nullCheck(emailId)) {
-            Utility.showToast(getResources().getString(R.string.error_email), this);
+            ilEmail.setError(getResources().getString(R.string.error_email));
         } else if (!Utility.nullCheck(password)) {
-            Utility.showToast(getResources().getString(R.string.error_password), this);
+            ilPassword.setError(getResources().getString(R.string.error_password));
         } else if (!Utility.isValidEmail(emailId)) {
-            Utility.showToast(getResources().getString(R.string.error_valid_email), this);
+            ilEmail.setError(getResources().getString(R.string.error_valid_email));
+
         } else {
+
             signIn();
 
         }
@@ -125,9 +140,6 @@ public class SignInActivity extends BaseActivity {
         mUser.clientId = Config.CLIENT_ID;
         mUserManager.login(mUser, this, true);
     }
-
-
-
 
 
 
